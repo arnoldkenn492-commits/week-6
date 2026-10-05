@@ -2,8 +2,6 @@
 // Week 6 Hands-On
 // ==========================================
 
-// Five students from Week 5
-
 const classList = [
     {
         id: 1,
@@ -47,12 +45,10 @@ const message = document.getElementById("message");
 
 
 // ==========================================
-// Task 1 — Render a class list from data
+// Task 1 — Render
 // ==========================================
 
 function render(rows) {
-    // Clear the list before rendering.
-    // This prevents duplicate rows when render() is called again.
     list.replaceChildren();
 
     rows.forEach(function (student) {
@@ -83,21 +79,17 @@ function render(rows) {
     });
 }
 
-
-// Initial render
-
 render(classList);
 
 
 // ==========================================
-// Task 2 — Filter buttons
+// Task 2 — Filters
 // ==========================================
 
 let currentFilter = "all";
 
 allButton.addEventListener("click", function () {
     currentFilter = "all";
-
     render(classList);
 });
 
@@ -113,23 +105,22 @@ passingButton.addEventListener("click", function () {
 
 
 // ==========================================
-// Task 2 — Add student form
+// Task 2 — Form
 // ==========================================
 
 studentForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
     const name = nameInput.value.trim();
-    const score = Number(scoreInput.value);
+    const scoreText = scoreInput.value.trim();
+    const score = Number(scoreText);
 
-    // Validate empty name
     if (name === "") {
         message.textContent = "Please enter a student name.";
         return;
     }
 
-    // Validate score
-    if (scoreInput.value.trim() === "" || Number.isNaN(score)) {
+    if (scoreText === "" || Number.isNaN(score)) {
         message.textContent = "Please enter a valid numeric score.";
         return;
     }
@@ -147,13 +138,12 @@ studentForm.addEventListener("submit", function (event) {
 
     studentForm.reset();
 
-    // Re-render using the current filter.
     if (currentFilter === "passing") {
-        const passingStudents = classList.filter(function (student) {
-            return student.score >= 75;
-        });
-
-        render(passingStudents);
+        render(
+            classList.filter(function (student) {
+                return student.score >= 75;
+            })
+        );
     } else {
         render(classList);
     }
@@ -161,7 +151,7 @@ studentForm.addEventListener("submit", function (event) {
 
 
 // ==========================================
-// Task 3 — Delete with event delegation
+// Task 3 — Delete
 // ==========================================
 
 list.addEventListener("click", function (event) {
@@ -179,13 +169,12 @@ list.addEventListener("click", function (event) {
         classList.splice(index, 1);
     }
 
-    // Re-render after deletion.
     if (currentFilter === "passing") {
-        const passingStudents = classList.filter(function (student) {
-            return student.score >= 75;
-        });
-
-        render(passingStudents);
+        render(
+            classList.filter(function (student) {
+                return student.score >= 75;
+            })
+        );
     } else {
         render(classList);
     }
