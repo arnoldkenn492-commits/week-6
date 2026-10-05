@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 6 Hands-On</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main>
+        <h1>Class List</h1>
+
+        <div class="filters">
+            <button id="allButton" type="button">All</button>
+            <button id="passingButton" type="button">Passing only</button>
+        </div>
+
+        <ul id="list"></ul>
+
+        <h2>Add Student</h2>
+
+        <form id="studentForm">
+            <label for="name">Name</label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Student name"
+            >
+
+            <label for="score">Score</label>
+            <input
+                type="number"
+                id="score"
+                name="score"
+                placeholder="Score"
+            >
+
+            <button type="submit">Add Student</button>
+
+            <p id="message"></p>
+        </form>
+    </main>
+
+    <script src="app.js" defer></script>
+</body>
+</html>
